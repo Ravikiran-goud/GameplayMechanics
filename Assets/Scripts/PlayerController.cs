@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody playerRb;
-    // private GameObject focalPoint;
+    private GameObject focalPoint;
     public float speed = 5.0f;
     public bool hasPowerup;
     private float powerupStrength = 15.0f;
@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
    void Start()
 {
     playerRb = GetComponent<Rigidbody>(); 
-    // focalPoint = GameObject.Find("Focal Point");
+    focalPoint = GameObject.Find("Focal Point");
 }
 
 
@@ -23,8 +23,8 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         float forwardInput = Input.GetAxis("Vertical");
-        playerRb.AddForce(Vector3.forward * speed * forwardInput);
-        // playerRb.AddForce(focalPoint.transform.forward * speed * forwardInput);
+        // playerRb.AddForce(Vector3.forward * speed * forwardInput);
+        playerRb.AddForce(focalPoint.transform.forward * speed * forwardInput);
         powerupIndicator.transform.position = transform.position + new Vector3(0, -0.5f, 0);
     }
     private void OnTriggerEnter(Collider other){
